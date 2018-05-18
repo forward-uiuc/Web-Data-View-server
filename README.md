@@ -14,7 +14,7 @@ in a separate terminal
 
 To run server, run 
 ```
-python chat.py
+python chatup.py
 ```
 In if statement at the bottom, the first two lines are for eventlet localhost and 2 lines below are for Kite server.  
 
