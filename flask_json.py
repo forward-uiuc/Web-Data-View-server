@@ -105,6 +105,7 @@ def query_filter(res=None, query = None):
 
 
         resdict[identifier] = matched_nodes
+        print(resdict)
 
 
     # records = []

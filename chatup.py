@@ -115,6 +115,8 @@ def on_leave(sid, data):
             { "model_text" : capa },
             {'$set': { "count": number}}
         )
+    # obj = query.find({})
+    # for document in obj: print(document)
 
 
 @sio.on( 'change domain' )
@@ -167,6 +169,7 @@ def pre_check(sid, data):
     if len(output) > 0:
         newlist = sorted(output, key=lambda k: k['count'], reverse=True)
     newlist.extend(query_output)
+    print(newlist)
     sio.emit('feedback', {'output': newlist}, room=sid)
     # if len(newlist) > 4:
     #     result = newlist[0:4]
@@ -209,6 +212,26 @@ def send_message_by_desc(sid, data):
             post = {"domain": domain, "query_name": name, "query_text": old_message, "model_id": 1}
             post_id = query.insert_one(post).inserted_id
 
+@sio.on('save query')
+def save_query(sid, data):
+    old_message = data['message']
+    name = data['name']
+    domain = data['domain_name']
+    
+    print("Saving query: ", data)
+
+    if name != '':
+        query_cursor = query.find({'query_text': old_message}, {'query_name': True})
+        query_output = []
+        while 1:
+            try:
+                record = query_cursor.next()
+                query_output.append(record)
+            except StopIteration:
+                break
+        if len(query_output) == 0:
+            post = {"domain": domain, "query_name": name, "query_text": old_message, "model_id": 1}
+            post_id = query.insert_one(post).inserted_id
 
 @sio.on('send message')
 def send_message(sid, data):
