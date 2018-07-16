@@ -1,0 +1,21 @@
+{
+    "extract" : {
+
+        "fields": [
+
+            {
+                "Field_id": "Laptop OS",
+                "match" : {
+                "type" : "text",
+                "grouping" : {
+                    "by": {"className": true, "prefix": 1},
+                    "area": {"gt":0.0, "lt":0.05},
+                    "count": {"gt": 15},
+                    "contains": {"keys":["operating"],"gt":1.0},
+                    "maximum": {"fontSize": false}
+                }
+                }
+            }
+    ]
+   }
+}

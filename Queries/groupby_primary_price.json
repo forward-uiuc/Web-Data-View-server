@@ -1,0 +1,21 @@
+{
+    "extract" : {
+
+        "fields": [
+
+            {
+                "Field_id": "prices",
+                "match" : {
+                "type" : "text",
+                "grouping" : {
+                    "by": {"className": true, "prefix": 0},
+                    "area": {"gt":0.0, "lt":0.1},
+                    "count": {"gt": 15},
+                    "contains": {"keys":["$"],"gt":1.0},
+                    "maximum": {"fontSize": true}
+                }
+                }
+            }
+    ]
+   }
+}

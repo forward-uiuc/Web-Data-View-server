@@ -1,0 +1,26 @@
+{
+    "extract" : {
+
+        "fields": [
+
+            {
+                "Field_id": "Dell Title",
+                "match" : {
+                "type" : "text",                
+                "beginsWith" : "dell",
+                "tagName"   :  "H4"
+                }
+            }
+
+
+    ]
+   },
+
+  "from" :  {
+    "url" : "https://www.bestbuy.com/site/searchpage.jsp?st=laptop&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys"
+
+    }
+
+}
+
+

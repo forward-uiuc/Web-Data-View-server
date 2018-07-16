@@ -1,0 +1,40 @@
+{
+    "extract" : {
+
+        "fields": [
+
+            {
+                "Field_id": "Laptop Title",
+                "match" : {
+                "type" : "text",
+                "TextLength" : {"lt":200,"gt":30},             
+                "tagName"   : "H3"
+                }
+            }, 
+            {
+                "Field_id": "Laptop Price",
+                "match" : {
+                "type" : "text",           
+                "tagName"   : "LI",
+                "className" : "lvprice prc"
+                }
+            }, 
+            {
+                "Field_id": "Laptop Shipment",
+                "match" : {
+                "type" : "text",           
+                "tagName"   : "LI",
+                "className" : "lvshipping"
+                }
+            }
+
+
+    ]
+   },
+
+  "from" :  {
+    "url" : "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1312.R2.TR10.TRC2.A0.H0.Xmac.TRS2&_nkw=MacBook+pro&_sacat=0"
+
+    }
+
+}

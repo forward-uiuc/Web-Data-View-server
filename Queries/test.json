@@ -1,0 +1,22 @@
+{
+    "extract" : {
+
+        "fields": [
+            
+            {
+                "Field_id": "Prime Box",
+                "match" : {
+                "type" : "text",
+                "className" : "a-size-medium s-inline  s-access-title  a-text-normal"
+                }
+            }
+
+    ]
+   },
+
+  "from" :  {
+    "url" : "https://www.amazon.com/s/ref=nb_sb_noss/138-7753184-2542555?url=search-alias%3Delectronics&field-keywords=computer&rh=n%3A172282%2Ck%3Acomputer"
+
+    }
+
+}

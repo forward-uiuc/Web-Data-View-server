@@ -3,7 +3,7 @@ import json,sys,csv
 ''' Query Parser: The stored queery is in self.parsedquery.
 
     The helperquery function has details on how to access the stored qery object'''
-
+import re
 class ParseJsonQuery:
 
     def __init__(self,jsonstring):
@@ -30,9 +30,11 @@ class ParseJsonQuery:
             else:
                 val[i] = b[i]
 
+        print("val: ")
+        print(val)
         return val
 
-    
+
     def helperquery(self):
 
          fieldlist = self.parsedquery['extract.fields']
@@ -56,60 +58,36 @@ class ParseJsonQuery:
 if __name__ == "__main__":
 
     query = """ {
-    "extract" : {
+        "extract" : {
 
-        "fields": [
+            "fields": [
 
-            {
-                "Field_id": "AA",
-                "match" : {
-                "type" : "text",
-                "TextLength" : {"lt":100,"gt":80},               
-                "tagName"   : "H2"
+                {
+                    "Field_id": "Aspire Title",
+                    "match" : {
+                    "type" : "text",
+                    "TextLength" : {"lt":200,"gt":40},
+                    "strRegex" : "\\\$[0-9\\\.,\\\]+"
+                    }
                 }
-            },
-
-            {
-                "Field_id": "BB",
-                "match" : {
-                "type" : "text",
-                "TextLength" : {"lt":20, "gt":2},               
-                "tagName" : "SPAN"
-                }
-            },
-
-            {
-                "Field_id": "CC",
-                "match" : {
-                "type" : "text",
-                "TextLength" : {"lt":250,"gt":50},                
-                "tagName"   : "H2"
-                }
-            },
-
-            {
-                "Field_id": "DD",
-                "match" : {
-                "type" : "text",
-                "TextLength" : {"lt":250,"gt":50},                
-                "tagName"   : "H3"
-                }
-            }
 
 
+        ]
+       },
 
+      "from" :  {
+        "url" : "https://www.amazon.com/s/ref=nb_sb_noss/138-7753184-2542555?url=search-alias%3Delectronics&field-keywords=computer&rh=n%3A172282%2Ck%3Acomputer"
 
-    ]
-   },
-
-  "from" :  {
-    "url" : "https://www.amazon.com/s/ref=nb_sb_noss/138-7753184-2542555?url=search-alias%3Delectronics&field-keywords=computer&rh=n%3A172282%2Ck%3Acomputer"
+        }
 
     }
 
-}
 """
-
     pq = ParseJsonQuery(query)
+    #print pq.ParseInpString()
     pq.ParseInpString()
+    a = '\$[0-9\.,]+'
+    '''print a
+    print re.search(a,'$200.09')
+    print re.search( pq.parsedquery['extract.fields'][0]['match']['strRegex'].replace('\[','[').replace('\]',']'),'$1250 - $1499.99 (63)',re.M | re.I)'''
     #pq.helperquery()

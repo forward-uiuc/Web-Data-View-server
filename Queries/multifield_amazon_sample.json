@@ -1,0 +1,74 @@
+{
+    "extract" : {
+
+        "fields": [
+
+            {
+                "Field_id": "AA",
+                "match" : {
+                "type" : "text",
+                "TextLength" : {"lt":100,"gt":80},               
+                "tagName"   : "H2"
+                }
+            },
+
+            {
+                "Field_id": "BB",
+                "match" : {
+                "type" : "text",
+                "TextLength" : {"lt":20, "gt":2},               
+                "tagName" : "SPAN"
+                }
+            },
+
+            {
+                "Field_id": "CC",
+                "match" : {
+                "type" : "text",
+                "TextLength" : {"lt":250,"gt":50},                
+                "tagName"   : "H2"
+                }
+            },
+
+            {
+                "Field_id": "DD",
+                "match" : {
+                "type" : "text",
+                "TextLength" : {"lt":250,"gt":50},                
+                "tagName"   : "H3"
+                }
+            }
+
+
+
+
+    ]
+   },
+
+  "from" :  {
+    "url" : "https://www.amazon.com/s/ref=nb_sb_noss/138-7753184-2542555?url=search-alias%3Delectronics&field-keywords=computer&rh=n%3A172282%2Ck%3Acomputer"
+
+    }
+
+}
+
+
+
+#### Old format
+                {
+                "type" : "text",
+                "TextLength" : {"lt":250,"gt":50}, 
+                "tagName"   : "H2"
+                };{
+                "type" : "text", 
+                "TextLength" : {"lt":20, "gt":2},
+                "tagName" : "SPAN"
+                };{
+                "type" : "text",
+                "TextLength" : {"lt":250,"gt":50}, 
+                "tagName"   : "H2"
+                };{
+                "type" : "text",
+                "TextLength" : {"lt":5,"gt":2}, 
+                "tagName"   : "H3"
+                }

@@ -1,24 +1,31 @@
-'''# Python-Chat-App
-# Create by Herbert Wang (rwang67@illinois.edu)
-Using Flask-socketio with eventlet to allow mixed content http + wss:
-```
-pip install -r requirement.txt
-```
-to install requirements...
+# Web Data View
+## Invoke terminal
 
-Start MonogoDB server by running 
-```
-monogd
-```
-in a separate terminal
+Do pip install -r requirement.txt to install requirements.
 
-To run server, run 
-```
-python chatup.py
-```
-In if statement at the bottom, the first two lines are for eventlet localhost and 2 lines below are for Kite server.  
+To run server, run python chatup.py
+
+## Install the chrome web extension 
+The necessary files are in WebDataView/ng-dashboard.
+
+Go to chrome://extensions/ to add the extension to your browser. You should set the path to WebDataView/ng-dashboard.
+
+## Execute query
+Open a webpage
+
+Invoke chrome extension
+
+Login in with an arbitrary name
+
+Specify a name of the query
+
+Write query in the query box and click "Send Query".
 
 
-#### Relevant Links
-[https://flask-socketio.readthedocs.io/en/latest/](https://flask-socketio.readthedocs.io/en/latest/)
-[https://developer.chrome.com/extensions/messaging](https://developer.chrome.com/extensions/messaging)'''
+## Visualize and output result
+If you see the "Visualize Query Result" button, it means the query have been executed correctly, then click on that,
+you will see the result highlighted on the webpage.
+
+Finally, you can click on the "check mark" icon to save the result, and click the table icon to generate files to download
+
+
