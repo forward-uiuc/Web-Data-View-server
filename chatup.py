@@ -79,7 +79,7 @@ def on_join(sid, data):
 
 @sio.on('leave')    
 def on_leave(sid, data):
-    capa = data['capa']
+    capa = data['capacity']
     domain = data['domain_name']
     cursor = query.find({'domain':domain}, {'model_name':True, 'model_text':False, '_id':False})
     countrecord = query.find({'model_text':capa}, {'count':True, 'model_text':True, '_id':True})
