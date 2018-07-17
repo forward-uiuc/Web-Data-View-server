@@ -12,7 +12,7 @@ pip install -r requirement.txt
 to install all required libraries
 
 To run server, run 
-```python3 chat.py```.
+```python chatup.py```.
 
 ### Common Problem for MacOS
 If some of the libraries are not found when running ```chatup.py```, try adding ```sys.path.append('/usr/local/lib/python2.7/site-packages/')``` before importing them.
@@ -35,13 +35,16 @@ A set of different categories of language primitives supported in our framework 
 | Position | align (left,right,top,bottom,vertical,horizontal), bounding box |
 | Web  | classname, tagname  |
 | Visual | location (top, bottom,left,right,middle) |
-The fundamental reasons to support different types of primitives are 
+
+The fundamental reasons to support different types of primitives are 
 
 1. completeness ofoperators (similar to SQL)
 2.  expressives (i.e how much a user could potentially describe using the primitives). 
 
 
-Each class of primitives is briefly explained below with a simple illustration.Generic functions enable extraction of string in a specific format like date or price. For example, price, available date of a books, URL of book description from an online bookstore could be obtained using generic primitives. String functions provide a variety of ways to extract text information from a webpage. Typically, title text in e‑commerce websites are longest strings. Users could use this insight in “len” primitive to extract titles. Users could specify substring‑based extraction with startswith and endswith functions for additional filtering. Regular expressions are powerful constructs that enable users to reuse queries across multiple webpages with a generic pattern. Image extraction is enabled through bounded box location and image size (height and weight) functions. The fundamental advantage of our method is enabling the user to extract information based on visual layout of the webpage. The position and visual primitives enable the user to extract web elements based on “what user sees” principle. “Align” position primitive extracts a set of web elements that satisfy user’s align criteria. For instance, the news article headings in BBC homepage are top‑aligned i.e their X position varies and Y position remains the same. Users could use this insight to extract news headlines. Visual primitivesenable users to extract information based on their relative location in the webpage. We divide the layout of the webpage into three parts vertically and horizontally. “Top” represents top 30% of the page, bottom represents bottom 30% of the page. Similar definitions are used for left,right and middle. For instance, the BBC news headlines could be extracted by specifying the location criteria as “top”.
+Each class of primitives is briefly explained below with a simple illustration.
+Generic functions enable extraction of string in a specific format like date or price. For example, price, available date of a books, URL of book description from an online bookstore could be obtained using generic primitives. String functions provide a variety of ways to extract text information from a webpage. Typically, title text in e‑commerce websites are longest strings. Users could use this insight in “len” primitive to extract titles. Users could specify substring‑based extraction with startswith and endswith functions for additional filtering. Regular expressions are powerful constructs that enable users to reuse queries across multiple webpages with a generic pattern. Image extraction is enabled through bounded box location and image size (height and weight) functions. The fundamental advantage of our method is enabling the user to extract information based on visual layout of the webpage. The position and visual primitives enable the user to extract web elements based on “what user sees” principle. “Align” position primitive extracts a set of web elements that satisfy user’s align criteria. For instance, the news article headings in BBC homepage are top‑aligned i.e their X position varies and Y position remains the same. Users could use this insight to extract news headlines. Visual primitives
+enable users to extract information based on their relative location in the webpage. We divide the layout of the webpage into three parts vertically and horizontally. “Top” represents top 30% of the page, bottom represents bottom 30% of the page. Similar definitions are used for left,right and middle. For instance, the BBC news headlines could be extracted by specifying the location criteria as “top”.
 
 Sample Query: select the elements that 
 
