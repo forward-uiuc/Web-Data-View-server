@@ -175,7 +175,7 @@ def query_filter(res=None, query = None):
             reslist.append(itemlist)
             final_ans[identifier] = itemlist
         # 2nd field of a record, container not found yet
-        elif 'record' not in final_ans: 
+        elif 'records' not in final_ans: 
             newlist = []
             containers = []
             # for item in reslist[0]: 
@@ -205,11 +205,11 @@ def query_filter(res=None, query = None):
                     if lca < 4: 
                         newlist.append(newitem)
                         records[k][identifier] = newitem
-                        records[k]['record'] = container
+                        records[k]['records'] = container
                         containers.append(container)
             if len(newlist) > 0: 
                 reslist.append(newlist)
-                final_ans['record'] = containers
+                final_ans['records'] = containers
                 final_ans[identifier] = newlist   
         else: 
             newlist = []
