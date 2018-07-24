@@ -337,158 +337,167 @@ def query_filter(res=None, query = None):
 # final_ans = {'title': [xxx, aaa], 'price':[yyy, bbb], 'record':[zzz, ccc]}
 # reslist = [[xxx, aaa], [yyy, bbb]]
 # """
-    # print('resdict: ')
-    # print(resdict)
+    print('resdict: ')
+    print(resdict)
     records = []
     final_ans = {}
     for each_field in fieldlist:
         identifier = each_field['Field_id']
         subres = resdict[identifier]
-        # both reslist and records is empty
-        if len(reslist) == 0:
-            itemlist = []
-            for item in subres:
-                itemlist.append(item)
-                record = {}
-                record[identifier] = item
-                records.append(record)
-            reslist.append(itemlist)
-            final_ans[identifier] = itemlist
+
+        itemlist = []
+        for item in subres:
+            itemlist.append(item)
+            record = {}
+            record[identifier] = item
+            records.append(record)
+        reslist.append(itemlist)
+        final_ans[identifier] = itemlist
+        # # both reslist and records is empty
+        # if len(reslist) == 0:
+        #     itemlist = []
+        #     for item in subres:
+        #         itemlist.append(item)
+        #         record = {}
+        #         record[identifier] = item
+        #         records.append(record)
+        #     reslist.append(itemlist)
+        #     final_ans[identifier] = itemlist
             #print(reslist)
-        # 2nd field of a record, container not found yet
-        elif 'record' not in final_ans:
-            newlist = []
-            containerlist = []
-            # for item in reslist[0]:
-            # for k in range(len(reslist[0])):
-            #     item = str(reslist[0][k])
-            #     lcas = []
-            #     containers = []
-            #     for m in range(len(subres)):
-            #         newitem = subres[m]
-            #     # for newitem in subres:
-            #         temp_item = str(item)
-            #         temp_new = str(newitem)
-            #         itemparent = []
-            #         newparent = []
-            #         for i in range(10):
-            #             #print(res[temp_item])
-            #             if 'parent' in res[temp_item] and int(res[temp_item]['parent']) >= 0 and int(res[temp_item]['parent']) != int(temp_item):
-            #                 itemparent.append(res[temp_item]['parent'])
-            #                 temp_item = str(res[temp_item]['parent'])
-            #             if 'parent' in res[temp_new] and int(res[temp_new]['parent']) >= 0 and int(res[temp_new]['parent']) != int(temp_new):
-            #                 newparent.append(res[temp_new]['parent'])
-            #                 temp_new = str(res[temp_new]['parent'])
-            #         lca = 9999
-            #         container = 9999
-            #         # if k == 1:
-            #         #     print('parent list 1: ')
-            #         #     print(itemparent)
-            #         #     print('parent list 2: ')
-            #         #     print(newparent)
-            #         for i in range(len(itemparent)):
-            #             for j in range(len(newparent)):
-            #                 if itemparent[i] == newparent[j]:
-            #                     lca = min(i, j, lca)
-            #                     container = itemparent[i]
-            #                     break
-            #             if lca < 9999:
-            #                 break
-            #         lcas.append(lca)
-            #         containers.append(container)
-            #     lca_index = lcas.index(min(lcas))
-            #     if min(lcas) < 9999:
-            #         newlist.append(subres[lca_index])
-            #         records[k][identifier] = subres[lca_index]
-            #         records[k]['record'] = containers[lca_index]
-            #         containerlist.append(containers[lca_index])
-            for k in range(len(reslist[0])):
-                item = reslist[0][k]
-                diff = []
-                # newlist = []
-                # containerlist = []
-                for m in range(len(subres)):
-                    newitem = subres[m]
-                    if item > newitem:
-                        diff.append(abs(item - newitem) + 1000000)
-                    else:
-                        diff.append(abs(item - newitem))
-                diff_min_idx = diff.index(min(diff))
-                newitem = subres[diff_min_idx]
-                newlist.append(newitem)
-                temp_item = str(item)
-                temp_new = str(newitem)
-                itemparent = []
-                newparent = []
-                for i in range(12):
-                    #print(res[temp_item])
-                    if 'parent' in res[temp_item] and int(res[temp_item]['parent']) >= 0 and int(res[temp_item]['parent']) != int(temp_item):
-                        itemparent.append(res[temp_item]['parent'])
-                        temp_item = str(res[temp_item]['parent'])
-                    if 'parent' in res[temp_new] and int(res[temp_new]['parent']) >= 0 and int(res[temp_new]['parent']) != int(temp_new):
-                        newparent.append(res[temp_new]['parent'])
-                        temp_new = str(res[temp_new]['parent'])
-                # if k == 5:
-                    # print('parents: ')
-                    # print(itemparent)
-                    # print(newparent)
-                flag = False
-                for i in range(len(itemparent)):
-                    for j in range(len(newparent)):
-                        if itemparent[i] == newparent[j]:
-                            containerlist.append(itemparent[i])
-                            flag = True
-                            break
-                    if flag == True:
-                        break
-                if flag == False:
-                    del newlist[len(newlist)-1]
-                else:
-                    # if k== 5:
-                        # '''print 'ssadasdasdasds'
-                        # print itemparent
-                        # print newparent'''
-                    records[k][identifier] = newitem
-                    records[k]['record'] = containerlist[len(containerlist)-1]
-                # if k == 5:
-                    # print(flag)
-                    # print(newlist)
-                    # print(containerlist)
+    #     # 2nd field of a record, container not found yet
+    #     elif 'record' not in final_ans:
+    #         newlist = []
+    #         containerlist = []
+    #         # for item in reslist[0]:
+    #         # for k in range(len(reslist[0])):
+    #         #     item = str(reslist[0][k])
+    #         #     lcas = []
+    #         #     containers = []
+    #         #     for m in range(len(subres)):
+    #         #         newitem = subres[m]
+    #         #     # for newitem in subres:
+    #         #         temp_item = str(item)
+    #         #         temp_new = str(newitem)
+    #         #         itemparent = []
+    #         #         newparent = []
+    #         #         for i in range(10):
+    #         #             #print(res[temp_item])
+    #         #             if 'parent' in res[temp_item] and int(res[temp_item]['parent']) >= 0 and int(res[temp_item]['parent']) != int(temp_item):
+    #         #                 itemparent.append(res[temp_item]['parent'])
+    #         #                 temp_item = str(res[temp_item]['parent'])
+    #         #             if 'parent' in res[temp_new] and int(res[temp_new]['parent']) >= 0 and int(res[temp_new]['parent']) != int(temp_new):
+    #         #                 newparent.append(res[temp_new]['parent'])
+    #         #                 temp_new = str(res[temp_new]['parent'])
+    #         #         lca = 9999
+    #         #         container = 9999
+    #         #         # if k == 1:
+    #         #         #     print('parent list 1: ')
+    #         #         #     print(itemparent)
+    #         #         #     print('parent list 2: ')
+    #         #         #     print(newparent)
+    #         #         for i in range(len(itemparent)):
+    #         #             for j in range(len(newparent)):
+    #         #                 if itemparent[i] == newparent[j]:
+    #         #                     lca = min(i, j, lca)
+    #         #                     container = itemparent[i]
+    #         #                     break
+    #         #             if lca < 9999:
+    #         #                 break
+    #         #         lcas.append(lca)
+    #         #         containers.append(container)
+    #         #     lca_index = lcas.index(min(lcas))
+    #         #     if min(lcas) < 9999:
+    #         #         newlist.append(subres[lca_index])
+    #         #         records[k][identifier] = subres[lca_index]
+    #         #         records[k]['record'] = containers[lca_index]
+    #         #         containerlist.append(containers[lca_index])
+    #         for k in range(len(reslist[0])):
+    #             item = reslist[0][k]
+    #             diff = []
+    #             # newlist = []
+    #             # containerlist = []
+    #             for m in range(len(subres)):
+    #                 newitem = subres[m]
+    #                 if item > newitem:
+    #                     diff.append(abs(item - newitem) + 1000000)
+    #                 else:
+    #                     diff.append(abs(item - newitem))
+    #             diff_min_idx = diff.index(min(diff))
+    #             newitem = subres[diff_min_idx]
+    #             newlist.append(newitem)
+    #             temp_item = str(item)
+    #             temp_new = str(newitem)
+    #             itemparent = []
+    #             newparent = []
+    #             for i in range(12):
+    #                 #print(res[temp_item])
+    #                 if 'parent' in res[temp_item] and int(res[temp_item]['parent']) >= 0 and int(res[temp_item]['parent']) != int(temp_item):
+    #                     itemparent.append(res[temp_item]['parent'])
+    #                     temp_item = str(res[temp_item]['parent'])
+    #                 if 'parent' in res[temp_new] and int(res[temp_new]['parent']) >= 0 and int(res[temp_new]['parent']) != int(temp_new):
+    #                     newparent.append(res[temp_new]['parent'])
+    #                     temp_new = str(res[temp_new]['parent'])
+    #             # if k == 5:
+    #                 # print('parents: ')
+    #                 # print(itemparent)
+    #                 # print(newparent)
+    #             flag = False
+    #             for i in range(len(itemparent)):
+    #                 for j in range(len(newparent)):
+    #                     if itemparent[i] == newparent[j]:
+    #                         containerlist.append(itemparent[i])
+    #                         flag = True
+    #                         break
+    #                 if flag == True:
+    #                     break
+    #             if flag == False:
+    #                 del newlist[len(newlist)-1]
+    #             else:
+    #                 # if k== 5:
+    #                     # '''print 'ssadasdasdasds'
+    #                     # print itemparent
+    #                     # print newparent'''
+    #                 records[k][identifier] = newitem
+    #                 records[k]['record'] = containerlist[len(containerlist)-1]
+    #             # if k == 5:
+    #                 # print(flag)
+    #                 # print(newlist)
+    #                 # print(containerlist)
 
-            if len(newlist) > 0:
-                # print(newlist)
-                reslist.append(newlist)
-                final_ans['record'] = containerlist
-                final_ans[identifier] = newlist
-            # else:
-                # print("new list: ")
-                # print(newlist)
-        else:
-            newlist = []
-            for record in records:
-                for k in range(len(subres)):
-                    item = subres[k]
-                    temp_item = item
-                    for i in range(7):
-                        if 'parent' in res[str(temp_item)] and int(res[str(temp_item)]['parent']) >= 0:
-                            if 'record' in record and int(res[str(temp_item)]['parent']) == record['record']:
-                                record[identifier] = item
-                                newlist.append(item)
-                                # print(k)
-                                break
-                            else:
-                                temp_item = str(res[str(temp_item)]['parent'])
-                    if identifier in record:
-                        break
-            if len(newlist) > 0:
-                final_ans[identifier] =  newlist
-                reslist.append(newlist)
+    #         if len(newlist) > 0:
+    #             # print(newlist)
+    #             reslist.append(newlist)
+    #             final_ans['record'] = containerlist
+    #             final_ans[identifier] = newlist
+    #         # else:
+    #             # print("new list: ")
+    #             # print(newlist)
+    #     else:
+    #         newlist = []
+    #         for record in records:
+    #             for k in range(len(subres)):
+    #                 item = subres[k]
+    #                 temp_item = item
+    #                 for i in range(7):
+    #                     if 'parent' in res[str(temp_item)] and int(res[str(temp_item)]['parent']) >= 0:
+    #                         if 'record' in record and int(res[str(temp_item)]['parent']) == record['record']:
+    #                             record[identifier] = item
+    #                             newlist.append(item)
+    #                             # print(k)
+    #                             break
+    #                         else:
+    #                             temp_item = str(res[str(temp_item)]['parent'])
+    #                 if identifier in record:
+    #                     break
+    #         if len(newlist) > 0:
+    #             final_ans[identifier] =  newlist
+    #             reslist.append(newlist)
 
-    # final_ans = defaultdict(list)
+    # # final_ans = defaultdict(list)
 
-    for rec in records:
-    	for key,val in rec.items():
-    		final_ans[key].append(val)
+    # for rec in records:
+    # 	for key,val in rec.items():
+    # 		final_ans[key].append(val)
 
     # print("mynodes: ")
     # print(final_ans)
@@ -503,6 +512,7 @@ def query_filter(res=None, query = None):
         if 'record' in final_ans:
             final_ans['records'] = final_ans['record']
             del final_ans['record']
+        print(final_ans)
         # return json.dumps({'return_query' : resdict[identifier]})
         return json.dumps(final_ans)
 
